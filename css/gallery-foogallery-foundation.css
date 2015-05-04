@@ -1,0 +1,25 @@
+/*
+Add any CSS that will be needed by your FooGallery Foundation gallery template. This will be output to the frontend
+*/
+
+ul.foogallery-foogallery-foundation li {
+	
+}
+
+	ul.foogallery-foogallery-foundation li a {
+		background: #fff;
+		display: inline;
+		float: left;
+		margin: 0 10px 5px 0;
+	}
+
+		ul.foogallery-foogallery-foundation li a:hover {
+			 -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, .5);
+			 -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, .5);
+		 }
+
+	ul.foogallery-foogallery-foundation li img {
+		display: block;
+		
+	}
+
