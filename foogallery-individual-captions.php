@@ -5,7 +5,7 @@ Description: Add individual captions to each image in FooGallery.
 Plugin URI: http://tormorten.no
 Author: Tor Morten Jensen
 Author URI: http://tormorten.no
-Version: 1.0.0
+Version: 1.0.1
 License: GPL2
 Text Domain: foogallery-captions
 Domain Path: lang/
