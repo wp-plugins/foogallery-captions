@@ -4,7 +4,7 @@ Donate link: http://tormorten.no
 Tags: foogallery, captions, separate captions, individual captions
 Requires at least: 4.0
 Tested up to: 4.2.1
-Stable tag: 1.0
+Stable tag: trunk
 License: GPLv2 or later
 
 Adds the option to add captions, titles and descriptions for each images in galleries.
@@ -31,6 +31,9 @@ Yes. Lots of it!
 No screenshots. Sorry!
 
 == Changelog ==
+
+= 1.0.1 =
+* Fixes the stupidest fatal error ever!
 
 = 1.0.0 =
 * Initial plugin

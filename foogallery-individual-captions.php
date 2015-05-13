@@ -29,7 +29,7 @@ Domain Path: lang/
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-if ( is_plugin_active( 'foogallery/foogallery.php' ) ) {
+
 
 	/**
 	 * FooGalleryCaptions Class
@@ -41,6 +41,10 @@ if ( is_plugin_active( 'foogallery/foogallery.php' ) ) {
 		 * @return void
 		 */
 		public static function init() {
+
+			if(!class_exists('FooGallery_Plugin')) {
+				return;
+			}
 
 			add_action( 'admin_enqueue_scripts',  	 	array( 'FooGalleryCaptions', 'scripts' ) );
 			add_action( 'save_post',      				array( 'FooGalleryCaptions', 'save' ), 99, 3 );
@@ -108,9 +112,11 @@ if ( is_plugin_active( 'foogallery/foogallery.php' ) ) {
 
 				$captions = get_post_meta( $post->ID, 'foogallery_captions', true );
 
-				foreach($captions as $attachment => $caption) {
-					foreach($caption as $key => $value) {
-						echo '<input type="hidden" id="foogallery-captions-'. $attachment .'-'. $key .'" name="foogallery_captions['. $attachment .']['. $key .']" value="'. $value .'" />';
+				if($captions) {
+					foreach($captions as $attachment => $caption) {
+						foreach($caption as $key => $value) {
+							echo '<input type="hidden" id="foogallery-captions-'. $attachment .'-'. $key .'" name="foogallery_captions['. $attachment .']['. $key .']" value="'. $value .'" />';
+						}
 					}
 				}
 
@@ -181,6 +187,10 @@ if ( is_plugin_active( 'foogallery/foogallery.php' ) ) {
 		 * @return array
 		 */
 		public static function get_captions($post, $attachment) {
+			
+			$post = apply_filters('foogallery_captions_post_id', $post);
+			$attachment = apply_filters('foogallery_captions_attachment_id', $attachment, $post);
+			
 			$captions = get_post_meta( $post, 'foogallery_captions', true );
 
 			$caption = ['title' => '', 'caption' => '', 'description' => '', 'alt' => ''];
@@ -222,7 +232,7 @@ if ( is_plugin_active( 'foogallery/foogallery.php' ) ) {
 			if(is_object($current_foogallery)) {
 				$caption = self::get_captions($current_foogallery->ID, $obj->ID);
 
-				$attr['data-caption-title'] = $caption['title'];
+				$attr['data-caption-title'] = $caption['caption'];
 				$attr['data-caption-desc'] = $caption['description'];
 			}
 			return $attr;
@@ -232,4 +242,4 @@ if ( is_plugin_active( 'foogallery/foogallery.php' ) ) {
 
 	add_action( 'plugins_loaded', array( 'FooGalleryCaptions', 'init' ) );
 
-}
+
