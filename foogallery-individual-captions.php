@@ -5,7 +5,7 @@ Description: Add individual captions to each image in FooGallery.
 Plugin URI: http://tormorten.no
 Author: Tor Morten Jensen
 Author URI: http://tormorten.no
-Version: 1.0.1
+Version: 1.0.2
 License: GPL2
 Text Domain: foogallery-captions
 Domain Path: lang/
@@ -193,13 +193,13 @@ Domain Path: lang/
 			
 			$captions = get_post_meta( $post, 'foogallery_captions', true );
 
-			$caption = ['title' => '', 'caption' => '', 'description' => '', 'alt' => ''];
+			$caption = array('title' => '', 'caption' => '', 'description' => '', 'alt' => '');
 			if ( isset( $captions[$attachment] ) ) {
 				$caption = $captions[$attachment];
 			}
 			else {
 				$media = wp_prepare_attachment_for_js( $attachment );
-				$caption = ['title' => $media['title'], 'caption' => $media['caption'], 'description' => $media['description'], 'alt' => $media['alt']];
+				$caption = array('title' => $media['title'], 'caption' => $media['caption'], 'description' => $media['description'], 'alt' => $media['alt']);
 			}
 
 			return $caption;
